@@ -1,9 +1,10 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
-import Header from "./components/Header";
+import HeaderSection from "./components/Header";
 import ThemeButton from "./components/ThemeButton";
 import styled from "styled-components";
+import MainSection from "./components/Main";
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -16,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   body {
-
+    font-family: "Wayfinder CF";
     -webkit-font-smoothing: antialiased;
     margin: 0;
     padding: 0;
@@ -40,19 +41,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default function App() {
-  const [isLightThemeOn, setIsLightThemeOn] = useState(false);
+  const [isLightThemeOn, setIsLightThemeOn] = useState(true);
 
   return (
     <ThemeProvider theme={isLightThemeOn ? lightTheme : darkTheme}>
       <GlobalStyle />
       <MainContainer>
-        <Header />
+        <HeaderSection />
         <ThemeButtonContainer>
           <ThemeButton
             isLightThemeOn={isLightThemeOn}
             setIsLightThemeOn={setIsLightThemeOn}
           />
         </ThemeButtonContainer>
+        <MainSection />
       </MainContainer>
     </ThemeProvider>
   );
